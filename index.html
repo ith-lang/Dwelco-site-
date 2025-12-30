@@ -8,636 +8,225 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Elegant, modern font pairing -->
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg: #07130F;          /* deep green-black */
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.08);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.70);
-      --muted2: rgba(255,255,255,.55);
-      --gold: #C9A227;        /* warm gold */
+      --bg:#07130F;
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.08);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --muted2:rgba(255,255,255,.55);
+      --gold:#C9A227;
       --gold2:#E4C86A;
-      --line: rgba(201,162,39,.28);
-      --shadow: 0 18px 50px rgba(0,0,0,.45);
-      --radius: 18px;
-      --radius2: 26px;
-      --max: 1180px;
+      --line:rgba(201,162,39,.28);
+      --shadow:0 18px 50px rgba(0,0,0,.45);
+      --radius:18px;
+      --radius2:26px;
+      --max:1180px;
     }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family:Inter, system-ui, sans-serif;
       color:var(--text);
       background:
         radial-gradient(900px 600px at 10% 10%, rgba(201,162,39,.18), transparent 55%),
         radial-gradient(900px 600px at 90% 20%, rgba(3,135,90,.18), transparent 60%),
-        linear-gradient(180deg, #06110D, #050F0B 45%, #040C09);
+        linear-gradient(180deg,#06110D,#050F0B);
     }
 
-    a{ color:inherit; text-decoration:none; }
-    .container{ max-width:var(--max); margin:0 auto; padding:0 20px; }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:0 20px}
 
     /* NAV */
     header.nav{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(180deg, rgba(7,19,15,.82), rgba(7,19,15,.55));
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:blur(14px);
+      background:rgba(7,19,15,.78);
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
     .nav-inner{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 0; gap:18px;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 0;gap:18px;
     }
-
     .brand{
-      display:flex; align-items:center; gap:12px;
+      display:flex;align-items:center;gap:10px;
       letter-spacing:.10em;
     }
 
-    /* ✅ FIX: logo sizing (small + refined) */
+    /* ✅ ONLY ADDITION: logo sizing */
     .brand .logo{
-      width:28px;
-      height:28px;
+      width:22px;
+      height:22px;
       display:block;
       object-fit:contain;
     }
 
     .brand .name{
-      font-family: Fraunces, serif;
+      font-family:Fraunces, serif;
+      font-size:18px;
       letter-spacing:.12em;
-      font-weight:520;
     }
     .brand .tag{
-      font-size:12px;
+      font-size:11px;
+      color:var(--gold2);
       letter-spacing:.28em;
       text-transform:uppercase;
-      color: var(--gold2);
       margin-top:2px;
     }
 
-    .nav-links{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+    .nav-links{
+      display:flex;gap:14px;flex-wrap:wrap;align-items:center;
+    }
     .nav-links a{
-      font-size:13px; color:var(--muted);
-      padding:10px 12px; border-radius:999px;
-      border:1px solid transparent;
+      font-size:13px;
+      padding:10px 12px;
+      border-radius:999px;
+      color:var(--muted);
     }
     .nav-links a:hover{
-      color:var(--text);
-      background: rgba(201,162,39,.08);
-      border-color: rgba(201,162,39,.35);
+      color:#fff;
+      background:rgba(201,162,39,.08);
     }
 
     .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
       padding:11px 16px;
       border-radius:999px;
       font-size:13px;
       font-weight:600;
       border:1px solid rgba(201,162,39,.45);
-      background: rgba(201,162,39,.16);
-      color: var(--text);
+      background:rgba(201,162,39,.18);
       cursor:pointer;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
     }
-    .btn:hover{ transform: translateY(-1px); background: rgba(201,162,39,.22); border-color: rgba(201,162,39,.65); }
     .btn-ghost{
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.18);
-      color: var(--text);
-    }
-    .btn-ghost:hover{
-      background: rgba(255,255,255,.08);
-      border-color: rgba(255,255,255,.28);
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.18);
     }
 
     /* HERO */
-    .hero{ padding:70px 0 26px; }
-    .hero-card{
-      border-radius: var(--radius2);
-      padding: 40px 32px;
-      background:
-        radial-gradient(1200px 500px at 10% 0%, rgba(201,162,39,.20), transparent 55%),
-        radial-gradient(900px 500px at 90% 10%, rgba(3,135,90,.20), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
-      border: 1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow);
+    .hero{padding:70px 0}
+    .hero h1{
+      font-family:Fraunces, serif;
+      font-size:48px;
+      max-width:20ch;
     }
-    .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      font-size:12px; letter-spacing:.18em; text-transform:uppercase;
+    .hero p{
+      max-width:55ch;
       color:var(--muted);
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(201,162,39,.25);
-      background: rgba(201,162,39,.07);
+      line-height:1.6;
     }
-    .dot{
-      width:8px;height:8px;border-radius:50%;
-      background:var(--gold);
-      box-shadow:0 0 0 6px rgba(201,162,39,.18);
-    }
-    h1{
-      font-family: Fraunces, serif;
-      font-size: clamp(36px, 4.6vw, 52px);
-      margin: 20px 0 12px;
-      line-height: 1.05;
-      letter-spacing:.02em;
-    }
-    .lead{
-      color: var(--muted);
-      max-width: 70ch;
-      font-size: 16px;
-      line-height: 1.65;
-      margin:0;
-    }
-    .hero-actions{ margin-top:22px; display:flex; gap:12px; flex-wrap:wrap; }
+    .hero-actions{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
 
-    /* FILTERS + LISTINGS */
-    section{ padding: 26px 0; }
-    .section-title{
-      font-family: Fraunces, serif;
-      font-weight: 520;
-      font-size: 28px;
-      margin: 0 0 14px;
-    }
-
-    .filters{
-      display:flex; gap:10px; flex-wrap:wrap;
-      padding: 14px;
-      border-radius: 18px;
-      background: var(--panel);
-      border: 1px solid rgba(255,255,255,.10);
-    }
-    .filters input, .filters select{
-      appearance:none;
-      padding: 12px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(0,0,0,.20);
-      color: var(--text);
-      font-size: 13px;
-      outline: none;
-    }
-    .filters input::placeholder{ color: rgba(255,255,255,.45); }
-
+    /* LISTINGS */
     .grid{
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:16px;
+      margin-top:30px;
     }
     .card{
-      border-radius: 20px;
-      overflow:hidden;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.10);
-      box-shadow: 0 12px 38px rgba(0,0,0,.30);
-      display:flex;
-      flex-direction:column;
-    }
-    .thumb{
-      height: 170px;
-      background:
-        radial-gradient(800px 280px at 20% 10%, rgba(201,162,39,.22), transparent 60%),
-        radial-gradient(800px 280px at 80% 20%, rgba(3,135,90,.22), transparent 65%),
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-      border-bottom: 1px solid rgba(255,255,255,.10);
-    }
-    .card-body{ padding: 16px; display:flex; flex-direction:column; gap:10px; }
-    .price{ font-family: Fraunces, serif; font-size: 22px; color: var(--gold2); }
-    .addr{ font-size: 14px; color: var(--text); }
-    .meta{ display:flex; gap:10px; flex-wrap:wrap; color: var(--muted); font-size: 12px; }
-    .pill{
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.18);
-    }
-
-    /* SERVICES */
-    .services{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
-      margin-top: 10px;
-    }
-    .service{
-      border-radius: 18px;
-      padding: 18px;
-      background: var(--panel);
-      border: 1px solid rgba(255,255,255,.10);
-    }
-    .service h3{
-      margin: 0 0 8px;
-      font-family: Fraunces, serif;
-      font-weight: 520;
-    }
-    .service p{ margin:0; color: var(--muted); line-height:1.6; font-size: 13.5px; }
-
-    /* CONTACT */
-    .contact{
-      border-radius: var(--radius2);
-      padding: 22px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.10);
-      box-shadow: 0 12px 38px rgba(0,0,0,.30);
-    }
-    .contact-grid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 16px;
-    }
-    @media(max-width:900px){ .contact-grid{ grid-template-columns: 1fr; } }
-
-    .contact label{ display:block; font-size: 12px; color: var(--muted); margin: 10px 0 6px; }
-    .contact input, .contact textarea, .contact select{
-      width:100%;
-      padding: 12px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(0,0,0,.20);
-      color: var(--text);
-      font-size: 13px;
-      outline: none;
-    }
-    .contact textarea{ min-height: 120px; resize: vertical; }
-
-    .aside{
-      border-radius: 18px;
-      padding: 18px;
-      background: rgba(0,0,0,.18);
-      border: 1px solid rgba(255,255,255,.10);
-      color: var(--muted);
-      line-height:1.6;
-      font-size: 13.5px;
-    }
-
-    /* MODAL */
-    .modal-backdrop{
-      position:fixed; inset:0;
-      background: rgba(0,0,0,.62);
-      display:none;
-      align-items:center; justify-content:center;
-      padding: 18px;
-      z-index: 100;
-    }
-    .modal{
-      width: min(880px, 96vw);
-      border-radius: 22px;
-      overflow:hidden;
-      background: #07130F;
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: 0 22px 70px rgba(0,0,0,.55);
-    }
-    .modal-top{
-      display:flex; justify-content:space-between; align-items:center;
-      padding: 14px 16px;
-      background: rgba(255,255,255,.05);
-      border-bottom: 1px solid rgba(255,255,255,.10);
-    }
-    .modal-title{
-      font-family: Fraunces, serif;
-      letter-spacing:.06em;
-      font-size: 18px;
-    }
-    .icon-btn{
-      width:40px;height:40px;border-radius:12px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.18);
-      color: var(--text);
+      background:var(--panel);
+      border-radius:18px;
+      padding:18px;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 12px 38px rgba(0,0,0,.30);
       cursor:pointer;
     }
-    .modal-content{ display:grid; grid-template-columns: 1.1fr .9fr; gap: 0; }
-    @media(max-width:900px){ .modal-content{ grid-template-columns: 1fr; } }
-    .modal-media{
-      min-height: 320px;
-      background:
-        radial-gradient(900px 360px at 20% 10%, rgba(201,162,39,.22), transparent 60%),
-        radial-gradient(900px 360px at 80% 20%, rgba(3,135,90,.22), transparent 65%),
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-      border-right: 1px solid rgba(255,255,255,.10);
+    .price{
+      font-family:Fraunces, serif;
+      font-size:22px;
+      color:var(--gold2);
     }
-    @media(max-width:900px){ .modal-media{ border-right:none; border-bottom: 1px solid rgba(255,255,255,.10);} }
-    .modal-details{ padding: 16px; }
-    .detail-row{ display:flex; gap:10px; flex-wrap:wrap; margin: 10px 0; color: var(--muted); }
-    .detail-row .pill{ background: rgba(255,255,255,.04); }
+    .addr{margin:6px 0;color:#fff}
 
     footer{
-      margin-top: 60px;
-      padding: 28px 0;
-      border-top: 1px solid rgba(255,255,255,.08);
-      background: rgba(0,0,0,.15);
-      color: var(--muted2);
-      font-size: 13px;
+      margin-top:60px;
+      padding:30px 0;
+      color:var(--muted2);
+      font-size:13px;
+      border-top:1px solid rgba(255,255,255,.08);
     }
   </style>
 </head>
 
 <body>
 
-  <header class="nav">
-    <div class="container">
-      <div class="nav-inner">
-        <!-- ✅ HEADER FIXED: same links, now with correct logo + small size -->
-        <a class="brand" href="index.html" aria-label="DWELCO Home">
-          <img class="logo" src="dlogo.png" alt="DWELCO Property Management logo" />
-          <div>
-            <div class="name">DWELCO</div>
-            <div class="tag">Property Management</div>
-          </div>
-        </a>
+<header class="nav">
+  <div class="container">
+    <div class="nav-inner">
 
-        <nav class="nav-links" aria-label="Primary">
-          <a href="#listings">Listings</a>
-          <a href="#services">Services</a>
-          <a href="#contact">Contact</a>
-          <a href="about.html">About Us</a>
-          <a class="btn" href="#contact">Request a Showing</a>
-          <a class="btn btn-ghost" href="#contact">List a Property</a>
-        </nav>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-card">
-          <div class="kicker"><span class="dot"></span> High-end • High-touch • Community-first</div>
-          <h1>Elevated property management for owners & residents who expect more.</h1>
-          <p class="lead">
-            DWELCO blends boutique service with modern systems—protecting your asset,
-            elevating the resident experience, and strengthening the communities we serve.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn" href="#listings">Explore Listings</a>
-            <!-- ✅ Added owner CTA here (links to your contact section) -->
-            <a class="btn" href="#contact">List a Property</a>
-            <a class="btn btn-ghost" href="about.html">Meet DWELCO</a>
-          </div>
+      <!-- ✅ HEADER FIX ONLY -->
+      <a class="brand" href="index.html" aria-label="DWELCO Home">
+        <img class="logo" src="dlogo.png" alt="DWELCO Property Management logo" />
+        <div>
+          <div class="name">DWELCO</div>
+          <div class="tag">Property Management</div>
         </div>
-      </div>
-    </section>
+      </a>
 
-    <!-- LISTINGS -->
-    <section id="listings">
-      <div class="container">
-        <div class="section-title">Curated Listings</div>
+      <nav class="nav-links">
+        <a href="#listings">Listings</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <a href="about.html">About Us</a>
+        <a class="btn" href="#contact">Request a Showing</a>
+        <a class="btn btn-ghost" href="#contact">List a Property</a>
+      </nav>
 
-        <div class="filters" aria-label="Listing filters">
-          <input id="q" type="text" placeholder="Search by neighborhood or keyword…" />
-          <select id="type">
-            <option value="">All Types</option>
-            <option value="Apartment">Apartment</option>
-            <option value="Townhome">Townhome</option>
-            <option value="Single Family">Single Family</option>
-            <option value="Condo">Condo</option>
-          </select>
-          <select id="beds">
-            <option value="">Beds (Any)</option>
-            <option value="1">1+ Beds</option>
-            <option value="2">2+ Beds</option>
-            <option value="3">3+ Beds</option>
-            <option value="4">4+ Beds</option>
-          </select>
-          <select id="max">
-            <option value="">Max Rent (Any)</option>
-            <option value="2000">$2,000</option>
-            <option value="3000">$3,000</option>
-            <option value="4000">$4,000</option>
-            <option value="5000">$5,000</option>
-          </select>
-        </div>
-
-        <div id="grid" class="grid" aria-live="polite"></div>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services">
-      <div class="container">
-        <div class="section-title">Services</div>
-        <div class="services">
-          <div class="service">
-            <h3>Owner Management</h3>
-            <p>Proactive oversight, transparent reporting, and long-term value protection—handled with precision and care.</p>
-          </div>
-          <div class="service">
-            <h3>Leasing & Screening</h3>
-            <p>High-quality tenants through streamlined marketing, thorough screening, and a premium application experience.</p>
-          </div>
-          <div class="service">
-            <h3>Maintenance Coordination</h3>
-            <p>Fast response, quality vendors, and consistent standards that keep properties performing at their best.</p>
-          </div>
-          <div class="service">
-            <h3>Resident Experience</h3>
-            <p>Respectful communication and reliable support—because strong communities start with great management.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="container">
-        <div class="section-title">Contact DWELCO</div>
-
-        <div class="contact">
-          <div class="contact-grid">
-            <div>
-              <label for="intent">I’m reaching out as…</label>
-              <select id="intent">
-                <option value="showing">A prospective resident (request a showing)</option>
-                <option value="owner">A property owner (list a property)</option>
-                <option value="general">General inquiry</option>
-              </select>
-
-              <label for="name">Full name</label>
-              <input id="name" type="text" placeholder="Your name" />
-
-              <label for="email">Email</label>
-              <input id="email" type="email" placeholder="you@email.com" />
-
-              <label for="msg">Message</label>
-              <textarea id="msg" placeholder="Tell us what you’re looking for…"></textarea>
-
-              <div style="margin-top:12px;">
-                <button class="btn" type="button" id="send">Send message</button>
-              </div>
-            </div>
-
-            <div class="aside">
-              <strong style="color:rgba(255,255,255,.92);">Family-owned. Community-rooted.</strong><br/>
-              We manage homes with the belief that taking care of people is how you take care of property.
-              Owners get transparent partnership; residents get responsive, respectful support.
-              <div style="margin-top:12px;">
-                <div class="pill" style="display:inline-block;">Response time: 1–2 business days</div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- MODAL -->
-  <div class="modal-backdrop" id="backdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle">
-      <div class="modal-top">
-        <div class="modal-title" id="mtitle">Listing Details</div>
-        <button class="icon-btn" id="close" aria-label="Close">✕</button>
-      </div>
-      <div class="modal-content">
-        <div class="modal-media"></div>
-        <div class="modal-details">
-          <div class="price" id="mprice"></div>
-          <div class="addr" id="maddr"></div>
-          <div class="detail-row" id="mmeta"></div>
-          <div style="margin-top:14px;">
-            <a class="btn" href="#contact" id="mcta">Request a Showing</a>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
+</header>
 
-  <footer>
+<main>
+  <section class="hero">
     <div class="container">
-      © <span id="year"></span> DWELCO Property Management. All rights reserved.
+      <h1>High-touch management for owners & residents who expect more.</h1>
+      <p>
+        DWELCO pairs boutique service with modern systems—protecting your asset,
+        elevating the resident experience, and strengthening the communities we serve.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn" href="#listings">Explore Listings</a>
+        <a class="btn btn-ghost" href="about.html">Meet DWELCO</a>
+      </div>
+
+      <!-- DYNAMIC LISTINGS -->
+      <div id="listings" class="grid"></div>
     </div>
-  </footer>
+  </section>
+</main>
 
-  <script>
-    // ✅ Dynamic home listings (original logic preserved)
-    const listings = [
-      { title:"The Gilded Terrace", price:4200, addr:"1128 Grove Lane", type:"Single Family", beds:4, baths:3, sqft:2450, neighborhood:"Grove District" },
-      { title:"Emerald Row Townhome", price:3650, addr:"88 Parkstone Row", type:"Townhome", beds:3, baths:2.5, sqft:1850, neighborhood:"Parkstone" },
-      { title:"Cedar & Gold Residence", price:4450, addr:"24 Winding Creek Dr", type:"Single Family", beds:4, baths:3, sqft:2600, neighborhood:"Winding Creek" },
-      { title:"The Aurum Flats", price:2950, addr:"510 Juniper Ave", type:"Apartment", beds:2, baths:2, sqft:1100, neighborhood:"Juniper" },
-      { title:"Verdant View Condo", price:3150, addr:"19 Larch Street", type:"Condo", beds:2, baths:2, sqft:1200, neighborhood:"Larch Heights" },
-      { title:"Gardenline Studio", price:1850, addr:"77 Willow Court", type:"Apartment", beds:1, baths:1, sqft:640, neighborhood:"Willow Court" }
-    ];
+<footer>
+  <div class="container">
+    © <span id="year"></span> DWELCO Property Management. All rights reserved.
+  </div>
+</footer>
 
-    const grid = document.getElementById("grid");
-    const q = document.getElementById("q");
-    const type = document.getElementById("type");
-    const beds = document.getElementById("beds");
-    const max = document.getElementById("max");
+<script>
+  const listings = [
+    { title:"The Gilded Terrace", price:"$4,200 / mo", addr:"1128 Grove Lane" },
+    { title:"Emerald Row Townhome", price:"$3,650 / mo", addr:"88 Parkstone Row" },
+    { title:"Cedar & Gold Residence", price:"$4,450 / mo", addr:"24 Winding Creek Dr" }
+  ];
 
-    const backdrop = document.getElementById("backdrop");
-    const closeBtn = document.getElementById("close");
-    const mprice = document.getElementById("mprice");
-    const maddr = document.getElementById("maddr");
-    const mmeta = document.getElementById("mmeta");
-    const mtitle = document.getElementById("mtitle");
-    const mcta = document.getElementById("mcta");
+  const grid = document.getElementById("listings");
+  listings.forEach(l=>{
+    grid.innerHTML += `
+      <div class="card">
+        <div class="price">${l.price}</div>
+        <div class="addr">${l.title}</div>
+        <div style="color:rgba(255,255,255,.7);font-size:13px">${l.addr}</div>
+      </div>
+    `;
+  });
 
-    const fmt = n => `$${n.toLocaleString()} / mo`;
-
-    function cardTemplate(item){
-      return `
-        <article class="card" tabindex="0" role="button" aria-label="Open listing: ${item.title}">
-          <div class="thumb"></div>
-          <div class="card-body">
-            <div class="price">${fmt(item.price)}</div>
-            <div class="addr">${item.title}</div>
-            <div class="meta">
-              <span class="pill">${item.neighborhood}</span>
-              <span class="pill">${item.type}</span>
-              <span class="pill">${item.beds} bd</span>
-              <span class="pill">${item.baths} ba</span>
-            </div>
-            <div style="color:rgba(255,255,255,.65);font-size:12.5px;">${item.addr}</div>
-            <div style="margin-top:8px;">
-              <button class="btn btn-ghost" type="button">View Details</button>
-            </div>
-          </div>
-        </article>
-      `;
-    }
-
-    function render(){
-      const query = (q.value || "").toLowerCase().trim();
-      const t = type.value;
-      const b = beds.value ? Number(beds.value) : 0;
-      const m = max.value ? Number(max.value) : Infinity;
-
-      const filtered = listings.filter(x=>{
-        const matchesQuery =
-          !query ||
-          x.title.toLowerCase().includes(query) ||
-          x.neighborhood.toLowerCase().includes(query) ||
-          x.addr.toLowerCase().includes(query);
-
-        const matchesType = !t || x.type === t;
-        const matchesBeds = !b || x.beds >= b;
-        const matchesMax = x.price <= m;
-
-        return matchesQuery && matchesType && matchesBeds && matchesMax;
-      });
-
-      grid.innerHTML = filtered.map(cardTemplate).join("");
-
-      // Click + keyboard open
-      [...grid.querySelectorAll(".card")].forEach((card, idx)=>{
-        const item = filtered[idx];
-        const open = () => openModal(item);
-        card.addEventListener("click", open);
-        card.addEventListener("keydown", (e)=>{
-          if(e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
-        });
-      });
-    }
-
-    function openModal(item){
-      mtitle.textContent = item.title;
-      mprice.textContent = fmt(item.price);
-      maddr.textContent = item.addr;
-      mmeta.innerHTML = `
-        <span class="pill">${item.neighborhood}</span>
-        <span class="pill">${item.type}</span>
-        <span class="pill">${item.beds} bd</span>
-        <span class="pill">${item.baths} ba</span>
-        <span class="pill">${item.sqft.toLocaleString()} sqft</span>
-      `;
-      mcta.textContent = "Request a Showing";
-      mcta.setAttribute("href", "#contact");
-      backdrop.style.display = "flex";
-      backdrop.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-    }
-
-    function closeModal(){
-      backdrop.style.display = "none";
-      backdrop.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-    }
-
-    closeBtn.addEventListener("click", closeModal);
-    backdrop.addEventListener("click", (e)=>{ if(e.target === backdrop) closeModal(); });
-    document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeModal(); });
-
-    [q, type, beds, max].forEach(el=> el.addEventListener("input", render));
-
-    document.getElementById("send").addEventListener("click", ()=>{
-      // Placeholder action: you can connect this to Formspree, Google Forms, or your backend.
-      alert("Thanks! Your message has been captured. We’ll be in touch shortly.");
-    });
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-    render();
-  </script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
