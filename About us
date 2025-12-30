@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About DWELCO | Property Management</title>
+  <meta name="description" content="About DWELCO — boutique property management with a luxury standard of care." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#07130F;
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --muted2:rgba(255,255,255,.55);
+      --gold:#C9A227;
+      --gold2:#E4C86A;
+      --panel:rgba(255,255,255,.06);
+      --line:rgba(255,255,255,.10);
+      --shadow: 0 18px 50px rgba(0,0,0,.45);
+      --radius:18px;
+      --radius2:26px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(900px 600px at 10% 10%, rgba(201,162,39,.18), transparent 55%),
+        radial-gradient(900px 600px at 90% 20%, rgba(3,135,90,.18), transparent 60%),
+        linear-gradient(180deg, #06110D, #050F0B 45%, #040C09);
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
+
+    .grain{
+      position:fixed; inset:0; pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+      mix-blend-mode:overlay;
+      opacity:.25;
+    }
+
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(7,19,15,.82), rgba(7,19,15,.50));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:18px;
+    }
+    .brand{display:flex; align-items:center; gap:12px; letter-spacing:.10em;}
+    .mark{
+      width:36px; height:36px; border-radius:12px;
+      background:
+        radial-gradient(10px 10px at 30% 30%, rgba(255,255,255,.22), transparent 65%),
+        linear-gradient(135deg, rgba(201,162,39,.95), rgba(3,135,90,.75));
+      box-shadow: 0 10px 28px rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .name{
+      font-family: Fraunces, serif;
+      font-weight: 520;
+      font-size: 18px;
+      letter-spacing:.12em;
+    }
+    .tag{
+      font-size: 12px;
+      color:var(--muted2);
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      margin-top:2px;
+    }
+    .nav-links{
+      display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav-links a{
+      font-size: 13px;
+      color:var(--muted);
+      padding:10px 12px;
+      border-radius:999px;
+      border: 1px solid transparent;
+      transition: all .2s ease;
+    }
+    .nav-links a:hover{
+      color:var(--text);
+      border-color: rgba(201,162,39,.35);
+      background: rgba(201,162,39,.08);
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 14px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:13px;
+      border: 1px solid rgba(201,162,39,.45);
+      background: linear-gradient(180deg, rgba(201,162,39,.20), rgba(201,162,39,.10));
+      box-shadow: 0 14px 28px rgba(0,0,0,.28);
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(228,200,106,.65);
+      background: linear-gradient(180deg, rgba(228,200,106,.25), rgba(201,162,39,.10));
+    }
+    .btn-ghost{
+      border-color: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      box-shadow:none;
+    }
+    .btn-ghost:hover{
+      border-color: rgba(201,162,39,.35);
+      background: rgba(201,162,39,.08);
+    }
+
+    main{padding: 54px 0 60px}
+    .hero{
+      border-radius: var(--radius2);
+      padding: 34px 28px;
+      background:
+        radial-gradient(1200px 500px at 10% 0%, rgba(201,162,39,.20), transparent 55%),
+        radial-gradient(900px 500px at 90% 10%, rgba(3,135,90,.20), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .kicker{
+      display:inline-flex; gap:10px; align-items:center;
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+      padding:10px 12px;
+      border:1px solid rgba(201,162,39,.25);
+      background: rgba(201,162,39,.07);
+      border-radius:999px;
+    }
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--gold);box-shadow:0 0 0 6px rgba(201,162,39,.18)}
+    h1{
+      font-family:Fraunces, serif;
+      font-weight:520;
+      font-size: clamp(34px, 4.4vw, 50px);
+      line-height:1.06;
+      margin: 18px 0 12px;
+    }
+    .lead{
+      color: var(--muted);
+      line-height:1.65;
+      font-size: 15.5px;
+      max-width: 70ch;
+      margin:0;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+      margin-top: 14px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){ .grid{grid-template-columns:1fr} }
+
+    .card{
+      border-radius: 22px;
+      padding: 18px 18px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 12px 38px rgba(0,0,0,.30);
+    }
+    .card h2{
+      margin: 0 0 8px;
+      font-family:Fraunces, serif;
+      font-weight:520;
+      letter-spacing:.02em;
+      font-size: 24px;
+    }
+    .card p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .values{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 560px){ .values{grid-template-columns:1fr} }
+    .value{
+      border-radius: 18px;
+      padding: 14px 14px;
+      background: rgba(0,0,0,.16);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .value .t{
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size: 11.5px;
+      color: var(--gold2);
+      margin-bottom: 6px;
+    }
+    .value .d{
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height:1.6;
+    }
+
+    .cta{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top: 14px;
+      align-items:center;
+    }
+
+    footer{
+      padding: 24px 0 40px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.14);
+    }
+    .foot{
+      display:flex; gap:16px; flex-wrap:wrap;
+      align-items:center; justify-content:space-between;
+      color: var(--muted2);
+      font-size: 13px;
+    }
+    .foot a{color: rgba(255,255,255,.80)}
+    .foot a:hover{color: var(--gold2)}
+  </style>
+</head>
+
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="index.html" aria-label="DWELCO Home">
+          <div class="mark" aria-hidden="true"></div>
+          <div>
+            <div class="name">DWELCO</div>
+            <div class="tag">Property Management</div>
+          </div>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="index.html#listings">Listings</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#contact">Contact</a>
+          <a class="btn btn-ghost" href="index.html">Back to Home</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="hero">
+        <div class="kicker"><span class="dot"></span> Boutique management. Luxury standard.</div>
+        <h1>About DWELCO</h1>
+        <p class="lead">
+          DWELCO is a property management company built for clients who value calm, consistency, and excellence.
+          We combine refined resident experiences with disciplined asset protection—so your property performs and
+          your tenants feel genuinely cared for.
+        </p>
+
+        <div class="cta">
+          <a class="btn" href="index.html#contact">Work With Us</a>
+          <a class="btn btn-ghost" href="index.html#listings">Browse Listings</a>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="card">
+          <h2>What we do</h2>
+          <p>
+            We manage residential properties end-to-end: marketing and leasing, screening, maintenance coordination,
+            renewals, compliance, and reporting. Our focus is a premium operating rhythm—clean, responsive, and transparent.
+          </p>
+
+          <div class="values">
+            <div class="value">
+              <div class="t">Owner-first clarity</div>
+              <div class="d">Straightforward reporting and consistent communication—no surprises.</div>
+            </div>
+            <div class="value">
+              <div class="t">Resident experience</div>
+              <div class="d">Fast response times, respectful service, and elevated standards.</div>
+            </div>
+            <div class="value">
+              <div class="t">Asset protection</div>
+              <div class="d">Proactive maintenance and quality vendors to protect long-term value.</div>
+            </div>
+            <div class="value">
+              <div class="t">Luxury finishes</div>
+              <div class="d">Marketing and presentation designed to attract premium tenants.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Our standards</h2>
+          <p>
+            DWELCO’s signature is precision: curated listings, thoughtful showings, and a maintenance process that feels
+            clean and professional from the first message to the final walkthrough.
+          </p>
+
+          <div class="values">
+            <div class="value">
+              <div class="t">White-glove vendors</div>
+              <div class="d">Trusted partners with clean work and reliable follow-through.</div>
+            </div>
+            <div class="value">
+              <div class="t">Premium leasing</div>
+              <div class="d">Beautiful presentation, strong screening, and faster placements.</div>
+            </div>
+            <div class="value">
+              <div class="t">Operational discipline</div>
+              <div class="d">Processes that scale—without losing the boutique feel.</div>
+            </div>
+            <div class="value">
+              <div class="t">Taste + tech</div>
+              <div class="d">Modern tools paired with a luxury visual standard.</div>
+            </div>
+          </div>
+
+          <div class="cta">
+            <a class="btn" href="index.html#contact">Request a Call</a>
+            <a class="btn btn-ghost" href="index.html#services">See Services</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <div>© <span id="year"></span> DWELCO Property Management. All rights reserved.</div>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a href="index.html#listings">Listings</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
