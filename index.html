@@ -8,225 +8,948 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Elegant, modern font pairing -->
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#07130F;
-      --panel:rgba(255,255,255,.06);
-      --panel2:rgba(255,255,255,.08);
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.70);
-      --muted2:rgba(255,255,255,.55);
-      --gold:#C9A227;
+      --bg: #07130F;          /* deep green-black */
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.08);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --muted2: rgba(255,255,255,.55);
+      --gold: #C9A227;        /* warm gold */
       --gold2:#E4C86A;
-      --line:rgba(201,162,39,.28);
-      --shadow:0 18px 50px rgba(0,0,0,.45);
-      --radius:18px;
-      --radius2:26px;
-      --max:1180px;
+      --line: rgba(201,162,39,.28);
+      --shadow: 0 18px 50px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1180px;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family:Inter, system-ui, sans-serif;
       color:var(--text);
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background:
         radial-gradient(900px 600px at 10% 10%, rgba(201,162,39,.18), transparent 55%),
         radial-gradient(900px 600px at 90% 20%, rgba(3,135,90,.18), transparent 60%),
-        linear-gradient(180deg,#06110D,#050F0B);
+        radial-gradient(700px 500px at 60% 90%, rgba(201,162,39,.14), transparent 60%),
+        linear-gradient(180deg, #06110D, #050F0B 45%, #040C09);
+      overflow-x:hidden;
     }
 
-    a{color:inherit;text-decoration:none}
-    .container{max-width:var(--max);margin:0 auto;padding:0 20px}
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
 
-    /* NAV */
-    header.nav{
-      position:sticky;top:0;z-index:50;
-      backdrop-filter:blur(14px);
-      background:rgba(7,19,15,.78);
-      border-bottom:1px solid rgba(255,255,255,.08);
+    /* Subtle grain for “luxury” feel */
+    .grain{
+      position:fixed; inset:0; pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+      mix-blend-mode:overlay;
+      opacity:.25;
+    }
+
+    /* Top nav */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(7,19,15,.82), rgba(7,19,15,.50));
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
     .nav-inner{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:14px 0;gap:18px;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:18px;
     }
     .brand{
-      display:flex;align-items:center;gap:10px;
+      display:flex; align-items:center; gap:12px;
       letter-spacing:.10em;
     }
-
-    /* ✅ ONLY ADDITION: logo sizing */
-    .brand .logo{
-      width:22px;
-      height:22px;
-      display:block;
-      object-fit:contain;
+    .mark{
+      width:36px; height:36px; border-radius:12px;
+      background:
+        radial-gradient(10px 10px at 30% 30%, rgba(255,255,255,.22), transparent 65%),
+        linear-gradient(135deg, rgba(201,162,39,.95), rgba(3,135,90,.75));
+      box-shadow: 0 10px 28px rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.10);
     }
-
     .brand .name{
-      font-family:Fraunces, serif;
-      font-size:18px;
+      font-family: Fraunces, serif;
+      font-weight: 520;
+      font-size: 18px;
       letter-spacing:.12em;
     }
     .brand .tag{
-      font-size:11px;
-      color:var(--gold2);
-      letter-spacing:.28em;
+      font-size: 12px;
+      color:var(--muted2);
+      letter-spacing:.18em;
       text-transform:uppercase;
       margin-top:2px;
     }
-
     .nav-links{
-      display:flex;gap:14px;flex-wrap:wrap;align-items:center;
+      display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+      justify-content:flex-end;
     }
     .nav-links a{
-      font-size:13px;
+      font-size: 13px;
+      color:var(--muted);
       padding:10px 12px;
       border-radius:999px;
-      color:var(--muted);
+      border: 1px solid transparent;
+      transition: all .2s ease;
     }
     .nav-links a:hover{
-      color:#fff;
-      background:rgba(201,162,39,.08);
+      color:var(--text);
+      border-color: rgba(201,162,39,.35);
+      background: rgba(201,162,39,.08);
     }
-
     .btn{
-      padding:11px 16px;
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:11px 14px;
       border-radius:999px;
-      font-size:13px;
       font-weight:600;
-      border:1px solid rgba(201,162,39,.45);
-      background:rgba(201,162,39,.18);
-      cursor:pointer;
+      font-size:13px;
+      letter-spacing:.02em;
+      border: 1px solid rgba(201,162,39,.45);
+      background: linear-gradient(180deg, rgba(201,162,39,.20), rgba(201,162,39,.10));
+      box-shadow: 0 14px 28px rgba(0,0,0,.28);
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(228,200,106,.65);
+      background: linear-gradient(180deg, rgba(228,200,106,.25), rgba(201,162,39,.10));
     }
     .btn-ghost{
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.18);
+      border-color: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      box-shadow:none;
+    }
+    .btn-ghost:hover{
+      border-color: rgba(201,162,39,.35);
+      background: rgba(201,162,39,.08);
     }
 
-    /* HERO */
-    .hero{padding:70px 0}
-    .hero h1{
+    /* Hero */
+    .hero{
+      padding:64px 0 28px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 26px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+    }
+    .hero-card{
+      border-radius: var(--radius2);
+      padding: 34px 28px;
+      background:
+        radial-gradient(1200px 500px at 10% 0%, rgba(201,162,39,.20), transparent 55%),
+        radial-gradient(900px 500px at 90% 10%, rgba(3,135,90,.20), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-card:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(600px 220px at 30% 10%, rgba(228,200,106,.16), transparent 70%);
+      pointer-events:none;
+    }
+    .kicker{
+      display:inline-flex; gap:10px; align-items:center;
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+      padding:10px 12px;
+      border:1px solid rgba(201,162,39,.25);
+      background: rgba(201,162,39,.07);
+      border-radius:999px;
+      position:relative;
+      z-index:1;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--gold);
+      box-shadow: 0 0 0 6px rgba(201,162,39,.18);
+    }
+    h1{
       font-family:Fraunces, serif;
-      font-size:48px;
-      max-width:20ch;
+      font-weight:520;
+      font-size: clamp(36px, 4.6vw, 54px);
+      line-height:1.06;
+      margin: 18px 0 12px;
+      letter-spacing:.01em;
+      position:relative;
+      z-index:1;
     }
     .hero p{
-      max-width:55ch;
-      color:var(--muted);
+      color: var(--muted);
+      font-size: 15.5px;
       line-height:1.6;
+      margin: 0 0 18px;
+      max-width: 56ch;
+      position:relative;
+      z-index:1;
     }
-    .hero-actions{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
+    .hero-actions{
+      display:flex; gap:12px; flex-wrap:wrap;
+      align-items:center;
+      margin-top: 8px;
+      position:relative;
+      z-index:1;
+    }
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+      margin-top: 18px;
+      position:relative;
+      z-index:1;
+    }
+    @media (max-width: 520px){
+      .stats{grid-template-columns:1fr}
+    }
+    .stat{
+      border-radius: 16px;
+      padding: 12px 14px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .stat .n{
+      font-family:Fraunces, serif;
+      font-size: 18px;
+      color: var(--gold2);
+      letter-spacing:.02em;
+    }
+    .stat .l{
+      font-size: 12px;
+      color: var(--muted2);
+      margin-top: 4px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
 
-    /* LISTINGS */
+    .side-card{
+      border-radius: var(--radius2);
+      padding: 26px 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.035));
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+    }
+    .side-title{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+      margin-bottom: 14px;
+    }
+    .side-title h3{
+      margin:0;
+      font-family:Fraunces, serif;
+      font-weight:520;
+      letter-spacing:.02em;
+    }
+    .pill{
+      font-size:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(3,135,90,.35);
+      background: rgba(3,135,90,.08);
+      color: rgba(255,255,255,.80);
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+
+    .mini-form{
+      display:grid;
+      gap:10px;
+      margin-top: 10px;
+    }
+    .field{
+      display:grid;
+      gap:6px;
+    }
+    label{
+      font-size: 12px;
+      color: var(--muted2);
+      letter-spacing:.10em;
+      text-transform:uppercase;
+    }
+    input, select{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      outline:none;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    input:focus, select:focus{
+      border-color: rgba(201,162,39,.55);
+      background: rgba(0,0,0,.26);
+    }
+    .note{
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height:1.5;
+      margin-top: 8px;
+    }
+
+    /* Section headings */
+    .section{
+      padding: 26px 0 54px;
+    }
+    .section-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      margin: 26px 0 16px;
+      flex-wrap:wrap;
+    }
+    .section-head h2{
+      margin:0;
+      font-family:Fraunces, serif;
+      font-weight:520;
+      letter-spacing:.02em;
+      font-size: 28px;
+    }
+    .section-head p{
+      margin:0;
+      color: var(--muted);
+      max-width: 58ch;
+      line-height:1.55;
+      font-size: 13.5px;
+    }
+
+    /* Filters */
+    .filters{
+      display:flex; gap:10px; flex-wrap:wrap;
+      align-items:center;
+      padding: 14px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .filters .chip{
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      font-size: 13px;
+      outline:none;
+      min-width: 160px;
+    }
+    .filters .chip.small{min-width: 120px}
+    .filters .right{
+      margin-left:auto;
+      display:flex; gap:10px; flex-wrap:wrap;
+      align-items:center;
+    }
+    .count{
+      font-size: 12px;
+      color: var(--muted2);
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(201,162,39,.22);
+      background: rgba(201,162,39,.06);
+      white-space:nowrap;
+    }
+
+    /* Listings grid */
     .grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:16px;
-      margin-top:30px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 14px;
     }
+    @media (max-width: 980px){ .grid{grid-template-columns: repeat(2, 1fr)} }
+    @media (max-width: 640px){ .grid{grid-template-columns: 1fr} }
+
     .card{
-      background:var(--panel);
-      border-radius:18px;
-      padding:18px;
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:0 12px 38px rgba(0,0,0,.30);
-      cursor:pointer;
+      border-radius: 20px;
+      overflow:hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 12px 38px rgba(0,0,0,.30);
+      transition: transform .18s ease, border-color .2s ease, background .2s ease;
+      position:relative;
+    }
+    .card:hover{
+      transform: translateY(-3px);
+      border-color: rgba(201,162,39,.35);
+      background: linear-gradient(180deg, rgba(201,162,39,.08), rgba(255,255,255,.03));
+    }
+    .thumb{
+      height: 170px;
+      background:
+        radial-gradient(700px 240px at 20% 20%, rgba(228,200,106,.18), transparent 60%),
+        radial-gradient(700px 240px at 80% 10%, rgba(3,135,90,.18), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.02));
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      position:relative;
+    }
+    .thumb:after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(12px 12px at 18% 35%, rgba(255,255,255,.16), transparent 62%),
+        radial-gradient(12px 12px at 78% 22%, rgba(255,255,255,.12), transparent 62%),
+        radial-gradient(10px 10px at 60% 72%, rgba(255,255,255,.10), transparent 62%);
+      opacity:.65;
+    }
+    .badge{
+      position:absolute; top:12px; left:12px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      border: 1px solid rgba(201,162,39,.35);
+      background: rgba(7,19,15,.65);
+      backdrop-filter: blur(10px);
+      color: rgba(255,255,255,.86);
+    }
+    .card-body{
+      padding: 14px 14px 16px;
     }
     .price{
       font-family:Fraunces, serif;
-      font-size:22px;
-      color:var(--gold2);
+      font-size: 22px;
+      color: var(--gold2);
+      letter-spacing:.02em;
+      margin: 0 0 6px;
     }
-    .addr{margin:6px 0;color:#fff}
+    .addr{
+      margin:0 0 10px;
+      color: var(--text);
+      font-weight: 520;
+      letter-spacing:.01em;
+    }
+    .meta{
+      display:flex; flex-wrap:wrap; gap:8px;
+      color: var(--muted);
+      font-size: 12.5px;
+      margin-bottom: 12px;
+    }
+    .meta span{
+      padding: 7px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.14);
+    }
+    .card-actions{
+      display:flex; gap:10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .link{
+      font-size: 13px;
+      color: rgba(255,255,255,.82);
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.05);
+      transition: all .2s ease;
+      cursor:pointer;
+    }
+    .link:hover{
+      border-color: rgba(201,162,39,.35);
+      background: rgba(201,162,39,.08);
+    }
 
-    footer{
-      margin-top:60px;
-      padding:30px 0;
-      color:var(--muted2);
-      font-size:13px;
-      border-top:1px solid rgba(255,255,255,.08);
+    /* Services strip */
+    .services{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
     }
+    @media (max-width: 900px){ .services{grid-template-columns:1fr} }
+    .service{
+      border-radius: 18px;
+      padding: 16px 16px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .service h4{
+      margin: 0 0 6px;
+      font-family:Fraunces, serif;
+      font-weight:520;
+      letter-spacing:.02em;
+    }
+    .service p{
+      margin:0;
+      color: var(--muted);
+      line-height:1.55;
+      font-size: 13.5px;
+    }
+
+    /* Footer */
+    footer{
+      padding: 30px 0 46px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.14);
+    }
+    .foot{
+      display:flex; gap:16px; flex-wrap:wrap;
+      align-items:center; justify-content:space-between;
+      color: var(--muted2);
+      font-size: 13px;
+    }
+    .foot a{color: rgba(255,255,255,.80)}
+    .foot a:hover{color: var(--gold2)}
+
+    /* Modal */
+    .modal{
+      position: fixed; inset: 0;
+      display:none;
+      align-items:center; justify-content:center;
+      padding: 18px;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(8px);
+      z-index: 90;
+    }
+    .modal.open{display:flex}
+    .modal-card{
+      width: min(860px, 100%);
+      border-radius: 24px;
+      overflow:hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 30px 90px rgba(0,0,0,.55);
+    }
+    .modal-top{
+      display:flex; gap:12px; justify-content:space-between; align-items:center;
+      padding: 16px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.10);
+    }
+    .modal-top strong{letter-spacing:.06em; text-transform:uppercase; font-size:12px; color: var(--muted)}
+    .x{
+      border:none; cursor:pointer;
+      color: rgba(255,255,255,.86);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 12px;
+      padding: 10px 12px;
+      transition: all .2s ease;
+    }
+    .x:hover{
+      border-color: rgba(201,162,39,.35);
+      background: rgba(201,162,39,.08);
+    }
+    .modal-body{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 0;
+    }
+    @media (max-width: 860px){ .modal-body{grid-template-columns:1fr} }
+    .modal-photo{
+      min-height: 260px;
+      background:
+        radial-gradient(900px 300px at 20% 20%, rgba(228,200,106,.20), transparent 60%),
+        radial-gradient(900px 300px at 80% 10%, rgba(3,135,90,.20), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.13), rgba(255,255,255,.03));
+      border-right: 1px solid rgba(255,255,255,.10);
+    }
+    @media (max-width: 860px){ .modal-photo{border-right:none; border-bottom:1px solid rgba(255,255,255,.10)} }
+    .modal-info{
+      padding: 18px 18px 20px;
+    }
+    .modal-info h3{
+      margin: 0 0 6px;
+      font-family:Fraunces, serif;
+      font-weight:520;
+      letter-spacing:.02em;
+      font-size: 26px;
+    }
+    .modal-info .sub{
+      color: var(--muted);
+      margin: 0 0 14px;
+      line-height:1.55;
+      font-size: 13.8px;
+    }
+    .modal-grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 14px 0 16px;
+    }
+    .kv{
+      border-radius: 16px;
+      padding: 12px 12px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .kv .k{
+      font-size: 11px;
+      color: var(--muted2);
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      margin-bottom: 6px;
+    }
+    .kv .v{
+      font-weight: 560;
+      color: rgba(255,255,255,.90);
+    }
+    .modal-actions{display:flex; gap:10px; flex-wrap:wrap}
   </style>
 </head>
 
 <body>
+  <div class="grain" aria-hidden="true"></div>
 
-<header class="nav">
-  <div class="container">
-    <div class="nav-inner">
-
-      <!-- ✅ HEADER FIX ONLY -->
-      <a class="brand" href="index.html" aria-label="DWELCO Home">
-        <img class="logo" src="dlogo.png" alt="DWELCO Property Management logo" />
-        <div>
-          <div class="name">DWELCO</div>
-          <div class="tag">Property Management</div>
-        </div>
-      </a>
-
-      <nav class="nav-links">
-        <a href="#listings">Listings</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-        <a href="about.html">About Us</a>
-        <a class="btn" href="#contact">Request a Showing</a>
-        <a class="btn btn-ghost" href="#contact">List a Property</a>
-      </nav>
-
-    </div>
-  </div>
-</header>
-
-<main>
-  <section class="hero">
+  <header class="nav">
     <div class="container">
-      <h1>High-touch management for owners & residents who expect more.</h1>
-      <p>
-        DWELCO pairs boutique service with modern systems—protecting your asset,
-        elevating the resident experience, and strengthening the communities we serve.
-      </p>
+      <div class="nav-inner">
+        <a class="brand" href="index.html" aria-label="DWELCO Home">
+          <div class="mark" aria-hidden="true"></div>
+          <div>
+            <div class="name">DWELCO</div>
+            <div class="tag">Property Management</div>
+          </div>
+        </a>
 
-      <div class="hero-actions">
-        <a class="btn" href="#listings">Explore Listings</a>
-        <a class="btn btn-ghost" href="about.html">Meet DWELCO</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#listings">Listings</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+          <a href="about.html">About Us</a>
+          <a class="btn" href="#contact">Request a Showing</a>
+          <a class="btn btn-ghost" href="#contact">List a Property</a>
+        </nav>
       </div>
-
-      <!-- DYNAMIC LISTINGS -->
-      <div id="listings" class="grid"></div>
     </div>
-  </section>
-</main>
+  </header>
 
-<footer>
-  <div class="container">
-    © <span id="year"></span> DWELCO Property Management. All rights reserved.
-  </div>
-</footer>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-card">
+            <div class="kicker"><span class="dot"></span> Curated homes. Impeccable care.</div>
+            <h1>High-touch management for owners & residents who expect more.</h1>
+            <p>
+              DWELCO pairs boutique service with modern systems—protecting your asset, elevating the resident experience,
+              and keeping every detail polished from leasing to maintenance.
+            </p>
 
-<script>
-  const listings = [
-    { title:"The Gilded Terrace", price:"$4,200 / mo", addr:"1128 Grove Lane" },
-    { title:"Emerald Row Townhome", price:"$3,650 / mo", addr:"88 Parkstone Row" },
-    { title:"Cedar & Gold Residence", price:"$4,450 / mo", addr:"24 Winding Creek Dr" }
-  ];
+            <div class="hero-actions">
+              <a class="btn" href="#listings">Explore Listings</a>
+              <a class="btn btn-ghost" href="about.html">Meet DWELCO</a>
+            </div>
 
-  const grid = document.getElementById("listings");
-  listings.forEach(l=>{
-    grid.innerHTML += `
-      <div class="card">
-        <div class="price">${l.price}</div>
-        <div class="addr">${l.title}</div>
-        <div style="color:rgba(255,255,255,.7);font-size:13px">${l.addr}</div>
+            <div class="stats" role="list">
+              <div class="stat" role="listitem">
+                <div class="n">24/7</div>
+                <div class="l">Resident Support</div>
+              </div>
+              <div class="stat" role="listitem">
+                <div class="n">White-Glove</div>
+                <div class="l">Vendor Network</div>
+              </div>
+              <div class="stat" role="listitem">
+                <div class="n">Transparent</div>
+                <div class="l">Owner Reporting</div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="side-card" id="contact">
+            <div class="side-title">
+              <h3>Request a showing</h3>
+              <span class="pill">Fast Response</span>
+            </div>
+
+            <form class="mini-form" onsubmit="event.preventDefault(); alert('Thanks! We’ll reach out shortly.');">
+              <div class="field">
+                <label for="fullName">Full name</label>
+                <input id="fullName" name="fullName" placeholder="Your name" required />
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@email.com" required />
+              </div>
+              <div class="field">
+                <label for="interest">Interested in</label>
+                <select id="interest" name="interest">
+                  <option value="any">Any available listing</option>
+                  <option value="luxury">Luxury</option>
+                  <option value="family">Family</option>
+                  <option value="downtown">Downtown</option>
+                </select>
+              </div>
+
+              <button class="btn" type="submit">Send Request</button>
+              <p class="note">
+                Prefer to talk? Call <strong>(555) 012-3456</strong> or email <strong>hello@dwelco.com</strong>.
+              </p>
+            </form>
+          </aside>
+        </div>
       </div>
-    `;
-  });
+    </section>
 
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+    <!-- LISTINGS -->
+    <section class="section" id="listings">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Featured Listings</h2>
+            <p>Luxury-forward, move-in ready properties—curated for quality, comfort, and location.</p>
+          </div>
 
+          <div class="filters" aria-label="Listing filters">
+            <select class="chip" id="filterType" aria-label="Filter by type">
+              <option value="all">All types</option>
+              <option value="apartment">Apartment</option>
+              <option value="townhome">Townhome</option>
+              <option value="single">Single-Family</option>
+            </select>
+            <select class="chip small" id="filterBeds" aria-label="Filter by beds">
+              <option value="all">Beds</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+            </select>
+            <select class="chip small" id="filterPrice" aria-label="Filter by price">
+              <option value="all">Price</option>
+              <option value="2500">≤ $2,500</option>
+              <option value="3500">≤ $3,500</option>
+              <option value="4500">≤ $4,500</option>
+            </select>
+
+            <div class="right">
+              <span class="count" id="count">0 Results</span>
+              <button class="btn btn-ghost" type="button" id="reset">Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid" id="grid" aria-live="polite"></div>
+
+        <!-- Services strip -->
+        <div class="section-head" id="services" style="margin-top:34px;">
+          <div>
+            <h2>Management Services</h2>
+            <p>Designed for discerning owners—protecting value, maximizing performance, and elevating occupancy.</p>
+          </div>
+        </div>
+
+        <div class="services">
+          <div class="service">
+            <h4>Leasing & Screening</h4>
+            <p>Premium marketing, showings, and thorough resident screening to secure reliable, long-term tenancy.</p>
+          </div>
+          <div class="service">
+            <h4>Maintenance, Done Right</h4>
+            <p>Trusted vendors, proactive inspections, and clean workmanship—handled fast and documented clearly.</p>
+          </div>
+          <div class="service">
+            <h4>Owner Reporting</h4>
+            <p>Clear financials, monthly statements, and performance insights—always transparent, always accessible.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="padding-top:0;">
+      <div class="container">
+        <div class="hero-card" style="padding:26px 22px;">
+          <div class="section-head" style="margin:0 0 14px;">
+            <div>
+              <h2 style="font-size:26px;">Own a property? Let’s elevate it.</h2>
+              <p>DWELCO offers boutique management for owners who want calm, consistency, and premium care.</p>
+            </div>
+            <div class="hero-actions" style="margin:0;">
+              <a class="btn" href="about.html">About DWELCO</a>
+              <a class="btn btn-ghost" href="#contact">Talk to Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <div>© <span id="year"></span> DWELCO Property Management. All rights reserved.</div>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a href="#listings">Listings</a>
+          <a href="about.html">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Listing details">
+    <div class="modal-card">
+      <div class="modal-top">
+        <strong id="modalTag">Listing</strong>
+        <button class="x" type="button" id="close">Close</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-photo" aria-hidden="true"></div>
+        <div class="modal-info">
+          <h3 id="mTitle">—</h3>
+          <p class="sub" id="mSub">—</p>
+
+          <div class="modal-grid">
+            <div class="kv"><div class="k">Price</div><div class="v" id="mPrice">—</div></div>
+            <div class="kv"><div class="k">Type</div><div class="v" id="mType">—</div></div>
+            <div class="kv"><div class="k">Beds / Baths</div><div class="v" id="mBeds">—</div></div>
+            <div class="kv"><div class="k">Sq Ft</div><div class="v" id="mSqft">—</div></div>
+          </div>
+
+          <div class="modal-actions">
+            <a class="btn" href="#contact" onclick="closeModal()">Request Showing</a>
+            <button class="btn btn-ghost" type="button" onclick="closeModal()">Back to Listings</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const listings = [
+      { id: 1, tag: "Featured", title: "The Gilded Terrace", addr: "1128 Grove Lane, Suite 4B", price: 4200, type: "apartment", beds: 2, baths: 2, sqft: 1280, area: "Downtown", desc: "Sunlit corner unit with concierge-style building amenities, chef’s kitchen, and skyline views." },
+      { id: 2, tag: "New", title: "Emerald Row Townhome", addr: "88 Parkstone Row", price: 3650, type: "townhome", beds: 3, baths: 2.5, sqft: 1710, area: "Westside", desc: "Private entry, garage parking, modern finishes, and an inviting open-concept main level." },
+      { id: 3, tag: "Popular", title: "Cedar & Gold Residence", addr: "24 Winding Creek Drive", price: 4450, type: "single", beds: 4, baths: 3, sqft: 2400, area: "Lakeview", desc: "Refined single-family home with a landscaped yard, large primary suite, and serene neighborhood setting." },
+      { id: 4, tag: "Available", title: "The Grand Conservatory", addr: "701 Fern Avenue, PH2", price: 4800, type: "apartment", beds: 2, baths: 2, sqft: 1425, area: "Downtown", desc: "Penthouse-level elegance with expansive windows, premium appliances, and curated finishes." },
+      { id: 5, tag: "Available", title: "Greencrest Family Home", addr: "19 Briarwood Circle", price: 3350, type: "single", beds: 3, baths: 2, sqft: 1985, area: "North End", desc: "Comfort-forward layout, updated kitchen, and flexible space perfect for work-from-home." },
+      { id: 6, tag: "New", title: "Luxe Garden Flat", addr: "530 Magnolia Street, Unit 12", price: 2550, type: "apartment", beds: 1, baths: 1, sqft: 790, area: "Midtown", desc: "Boutique building charm, warm natural light, and a calm, elevated atmosphere throughout." },
+    ];
+
+    const grid = document.getElementById("grid");
+    const count = document.getElementById("count");
+    const filterType = document.getElementById("filterType");
+    const filterBeds = document.getElementById("filterBeds");
+    const filterPrice = document.getElementById("filterPrice");
+    const reset = document.getElementById("reset");
+
+    const modal = document.getElementById("modal");
+    const closeBtn = document.getElementById("close");
+
+    function money(n){
+      return n.toLocaleString("en-US", { style:"currency", currency:"USD", maximumFractionDigits:0 });
+    }
+
+    function render(list){
+      grid.innerHTML = list.map(item => `
+        <article class="card" data-id="${item.id}">
+          <div class="thumb">
+            <div class="badge">${item.tag}</div>
+          </div>
+          <div class="card-body">
+            <div class="price">${money(item.price)}/mo</div>
+            <p class="addr">${item.title}</p>
+            <div class="meta">
+              <span>${item.beds} bd</span>
+              <span>${item.baths} ba</span>
+              <span>${item.sqft.toLocaleString()} sq ft</span>
+              <span>${labelType(item.type)}</span>
+            </div>
+            <div class="card-actions">
+              <button class="link" type="button" onclick="openListing(${item.id})">View Details</button>
+              <a class="link" href="#contact" onclick="prefillInterest('${item.title.replace(/'/g,"\\'")}')">Request Showing</a>
+            </div>
+          </div>
+        </article>
+      `).join("");
+
+      count.textContent = `${list.length} Result${list.length === 1 ? "" : "s"}`;
+    }
+
+    function labelType(t){
+      if(t === "apartment") return "Apartment";
+      if(t === "townhome") return "Townhome";
+      return "Single-Family";
+    }
+
+    function applyFilters(){
+      const t = filterType.value;
+      const b = filterBeds.value;
+      const p = filterPrice.value;
+
+      const filtered = listings.filter(x => {
+        const typeOk = (t === "all") ? true : x.type === t;
+        const bedsOk = (b === "all") ? true : x.beds >= Number(b);
+        const priceOk = (p === "all") ? true : x.price <= Number(p);
+        return typeOk && bedsOk && priceOk;
+      });
+
+      render(filtered);
+    }
+
+    function openListing(id){
+      const x = listings.find(i => i.id === id);
+      if(!x) return;
+
+      document.getElementById("modalTag").textContent = x.tag;
+      document.getElementById("mTitle").textContent = x.title;
+      document.getElementById("mSub").textContent = `${x.addr} • ${x.area} — ${x.desc}`;
+      document.getElementById("mPrice").textContent = `${money(x.price)}/mo`;
+      document.getElementById("mType").textContent = labelType(x.type);
+      document.getElementById("mBeds").textContent = `${x.beds} bd / ${x.baths} ba`;
+      document.getElementById("mSqft").textContent = x.sqft.toLocaleString();
+
+      modal.classList.add("open");
+    }
+
+    function closeModal(){
+      modal.classList.remove("open");
+    }
+
+    function prefillInterest(title){
+      const select = document.getElementById("interest");
+      // lightweight “smart” selection based on listing name
+      if(/Penthouse|Grand|Gilded|Luxe/i.test(title)) select.value = "luxury";
+      else if(/Family|Residence|Home/i.test(title)) select.value = "family";
+      else select.value = "any";
+    }
+
+    // Events
+    filterType.addEventListener("change", applyFilters);
+    filterBeds.addEventListener("change", applyFilters);
+    filterPrice.addEventListener("change", applyFilters);
+
+    reset.addEventListener("click", () => {
+      filterType.value = "all";
+      filterBeds.value = "all";
+      filterPrice.value = "all";
+      applyFilters();
+    });
+
+    closeBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
+    document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
+
+    // Init
+    document.getElementById("year").textContent = new Date().getFullYear();
+    render(listings);
+  </script>
 </body>
 </html>
