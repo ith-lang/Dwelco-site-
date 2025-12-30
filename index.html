@@ -14,11 +14,13 @@
     :root{
       --bg:#07130F;
       --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.08);
       --text:rgba(255,255,255,.92);
       --muted:rgba(255,255,255,.70);
       --muted2:rgba(255,255,255,.55);
       --gold:#C9A227;
       --gold2:#E4C86A;
+      --line:rgba(201,162,39,.28);
       --shadow:0 18px 50px rgba(0,0,0,.45);
       --radius:18px;
       --radius2:26px;
@@ -28,10 +30,11 @@
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family:Inter, sans-serif;
+      font-family:Inter, system-ui, sans-serif;
       color:var(--text);
       background:
         radial-gradient(900px 600px at 10% 10%, rgba(201,162,39,.18), transparent 55%),
+        radial-gradient(900px 600px at 90% 20%, rgba(3,135,90,.18), transparent 60%),
         linear-gradient(180deg,#06110D,#050F0B);
     }
 
@@ -42,39 +45,38 @@
     header{
       position:sticky;top:0;z-index:50;
       backdrop-filter:blur(14px);
-      background:rgba(7,19,15,.75);
+      background:rgba(7,19,15,.78);
       border-bottom:1px solid rgba(255,255,255,.08);
     }
     .nav{
       display:flex;align-items:center;justify-content:space-between;
       padding:14px 0;
+      gap:18px;
     }
     .brand{
-      display:flex;align-items:center;gap:12px;
+      display:flex;align-items:center;gap:10px;
     }
-   .logo{
-  width:28px;      /* ← smaller, refined */
-  height:auto;
-  display:block;
-  object-fit:contain;
-}
-
+    .logo{
+      width:28px; /* SMALL refined logo */
+      height:auto;
+      display:block;
+      object-fit:contain;
+    }
     .brand .name{
       font-family:Fraunces, serif;
       font-size:18px;
       letter-spacing:.12em;
     }
     .brand .tag{
-      font-size:12px;
+      font-size:11px;
       color:var(--gold2);
-      letter-spacing:.18em;
+      letter-spacing:.22em;
       text-transform:uppercase;
       margin-top:2px;
     }
 
     .nav-links{
-      display:flex;gap:14px;flex-wrap:wrap;
-      align-items:center;
+      display:flex;gap:14px;flex-wrap:wrap;align-items:center;
     }
     .nav-links a{
       font-size:13px;
@@ -114,6 +116,35 @@
       line-height:1.6;
     }
     .hero-actions{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
+
+    /* LISTINGS */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:16px;
+      margin-top:30px;
+    }
+    .card{
+      background:var(--panel);
+      border-radius:18px;
+      padding:18px;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 12px 38px rgba(0,0,0,.30);
+    }
+    .price{
+      font-family:Fraunces, serif;
+      font-size:22px;
+      color:var(--gold2);
+    }
+    .addr{margin:6px 0;color:#fff}
+
+    footer{
+      margin-top:60px;
+      padding:30px 0;
+      color:var(--muted2);
+      font-size:13px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
   </style>
 </head>
 
@@ -153,17 +184,37 @@
         <a class="btn" href="#listings">Explore Listings</a>
         <a class="btn btn-ghost" href="about.html">Meet DWELCO</a>
       </div>
+
+      <!-- DYNAMIC LISTINGS -->
+      <div id="listings" class="grid"></div>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="container" style="padding:30px 0;color:var(--muted2);font-size:13px;">
+  <div class="container">
     © <span id="year"></span> DWELCO Property Management. All rights reserved.
   </div>
 </footer>
 
 <script>
+  const listings = [
+    { title:"The Gilded Terrace", price:"$4,200 / mo", addr:"1128 Grove Lane" },
+    { title:"Emerald Row Townhome", price:"$3,650 / mo", addr:"88 Parkstone Row" },
+    { title:"Cedar & Gold Residence", price:"$4,450 / mo", addr:"24 Winding Creek Dr" }
+  ];
+
+  const grid = document.getElementById("listings");
+  listings.forEach(l=>{
+    grid.innerHTML += `
+      <div class="card">
+        <div class="price">${l.price}</div>
+        <div class="addr">${l.title}</div>
+        <div style="color:rgba(255,255,255,.7);font-size:13px">${l.addr}</div>
+      </div>
+    `;
+  });
+
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
