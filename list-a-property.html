@@ -14,17 +14,64 @@
   action="https://formspree.io/f/xpqzvwad"
   method="POST"
 >
+  <!-- Identifies this form in your inbox -->
+  <input type="hidden" name="formType" value="List a Property">
+
   <label>
-    Your email:
-    <input type="email" name="email">
+    Full name
+    <input
+      type="text"
+      name="fullName"
+      placeholder="Your full name"
+      required
+    >
   </label>
+
   <label>
-    Your message:
-    <textarea name="message"></textarea>
+    Email
+    <input
+      type="email"
+      name="email"
+      placeholder="you@email.com"
+      required
+    >
   </label>
-  <!-- your other form fields go here -->
-  <button type="submit">Send</button>
+
+  <label>
+    Property type
+    <select name="propertyType" required>
+      <option value="" disabled selected>Select a property type</option>
+      <option value="Townhome">Townhome</option>
+      <option value="Apartment Complex">Apartment Complex</option>
+      <option value="Single Family Home">Single Family Home</option>
+      <option value="Multiple">Multiple</option>
+    </select>
+  </label>
+
+  <!-- As requested: under property type -->
+  <label>
+    Amount of properties
+    <input
+      type="number"
+      name="propertyCount"
+      min="1"
+      step="1"
+      placeholder="e.g. 1"
+      required
+    >
+  </label>
+
+  <label>
+    Additional details (optional)
+    <textarea
+      name="notes"
+      placeholder="City, timeline, current tenant status, questions, etc."
+    ></textarea>
+  </label>
+
+  <button type="submit">Submit</button>
 </form>
+
   <style>
     :root{
       --bg:#07130F;
