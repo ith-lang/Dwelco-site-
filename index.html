@@ -689,30 +689,33 @@
               <span class="pill">Fast Response</span>
             </div>
 
-            <form class="mini-form" onsubmit="event.preventDefault(); alert('Thanks! We’ll reach out shortly.');">
-              <div class="field">
-                <label for="fullName">Full name</label>
-                <input id="fullName" name="fullName" placeholder="Your name" required />
-              </div>
-              <div class="field">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="you@email.com" required />
-              </div>
-              <div class="field">
-                <label for="interest">Interested in</label>
-                <select id="interest" name="interest">
-                  <option value="any">Any available listing</option>
-                  <option value="luxury">Luxury</option>
-                  <option value="family">Family</option>
-                  <option value="downtown">Downtown</option>
-                </select>
-              </div>
+            <form class="mini-form" action="https://formspree.io/f/mdaoqepv" method="POST">
+              <input type="hidden" name="formType" value="Home - Request a Showing">
 
-              <button class="btn" type="submit">Send Request</button>
-              <p class="note">
-                Prefer to talk? Call <strong>(216) 384-8015</strong> or email <strong>info@dwelco.org</strong>.
-              </p>
-            </form>
+             
+  <div class="field">
+    <label for="fullName">Full name</label>
+    <input id="fullName" name="fullName" placeholder="Your name" required />
+  </div>
+  <div class="field">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" placeholder="you@email.com" required />
+  </div>
+  <div class="field">
+    <label for="interest">Interested in</label>
+    <select id="interest" name="interest">
+      <option value="any">Any available listing</option>
+      <option value="luxury">Luxury</option>
+      <option value="family">Family</option>
+      <option value="downtown">Downtown</option>
+    </select>
+  </div>
+
+  <button class="btn" type="submit">Send Request</button>
+  <p class="note">
+    Prefer to talk? Call <strong>(216) 384-8015</strong> or email <strong>info@dwelco.org</strong>.
+  </p>
+</form>
           </aside>
         </div>
       </div>
