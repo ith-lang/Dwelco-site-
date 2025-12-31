@@ -871,9 +871,14 @@
     function render(list){
       grid.innerHTML = list.map(item => `
         <article class="card" data-id="${item.id}">
-          <div class="thumb">
-            <div class="badge">${item.tag}</div>
-          </div>
+          <div class="thumb"
+     style="${
+       item.id === 7 && item.photos && item.photos[0]
+         ? `background-image:url('${item.photos[0]}'); background-size:cover; background-position:center;`
+         : ''
+     }">
+  <div class="badge">${item.tag}</div>
+</div>
           <div class="card-body">
             <div class="price">${money(item.price)}/mo</div>
             <p class="addr">${item.title}</p>
