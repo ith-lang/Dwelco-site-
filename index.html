@@ -579,6 +579,29 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+      .modal-photo{ position:relative; }
+
+.photo-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:40px;height:40px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(0,0,0,.35);
+  color:rgba(255,255,255,.9);
+  cursor:pointer;
+  display:none; /* only show when there are 2+ photos */
+}
+
+.photo-nav.prev{ left:12px; }
+.photo-nav.next{ right:12px; }
+
+.photo-nav:hover{
+  background:rgba(0,0,0,.50);
+  border-color:rgba(201,162,39,.55);
+}
+
     }
 
     }
@@ -827,7 +850,10 @@
         <button class="x" type="button" id="close">Close</button>
       </div>
       <div class="modal-body">
-        <div class="modal-photo" aria-hidden="true"></div>
+        <div class="modal-photo" aria-hidden="true">
+  <button class="photo-nav prev" type="button" onclick="prevPhoto()" aria-label="Previous photo">‹</button>
+  <button class="photo-nav next" type="button" onclick="nextPhoto()" aria-label="Next photo">›</button>
+</div>
         <div class="modal-info">
           <h3 id="mTitle">—</h3>
           <p class="sub" id="mSub">—</p>
