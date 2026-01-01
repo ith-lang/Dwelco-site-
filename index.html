@@ -924,11 +924,12 @@
       const x = listings.find(i => i.id === id);
       if(!x) return;
 
-      const media = document.querySelector(".modal-media");
-  if (media) {
-    media.style.backgroundImage =
-      (x.photos && x.photos[0]) ? `url('${x.photos[0]}')` : "";
-  }
+      const media = document.querySelector(".modal-photo");
+if (media) {
+  media.style.backgroundImage =
+    (x.photos && x.photos[0]) ? `url('${x.photos[0]}')` : "";
+}
+
 
       document.getElementById("modalTag").textContent = x.tag;
       document.getElementById("mTitle").textContent = x.title;
