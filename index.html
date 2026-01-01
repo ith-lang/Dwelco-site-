@@ -950,7 +950,38 @@
 
       render(filtered);
     }
+let currentListing = null;
+let currentPhotoIndex = 0;
 
+function setModalPhoto(){
+  const media = document.querySelector(".modal-photo");
+  if(!media || !currentListing) return;
+
+  const photos = currentListing.photos || [];
+  const src = photos[currentPhotoIndex] || "";
+  media.style.backgroundImage = src ? `url('${src}')` : "";
+
+  // show/hide arrows
+  const prevBtn = media.querySelector(".photo-nav.prev");
+  const nextBtn = media.querySelector(".photo-nav.next");
+  const showNav = photos.length > 1;
+
+  if(prevBtn) prevBtn.style.display = showNav ? "block" : "none";
+  if(nextBtn) nextBtn.style.display = showNav ? "block" : "none";
+}
+
+function nextPhoto(){
+  if(!currentListing?.photos?.length) return;
+  currentPhotoIndex = (currentPhotoIndex + 1) % currentListing.photos.length;
+  setModalPhoto();
+}
+
+function prevPhoto(){
+  if(!currentListing?.photos?.length) return;
+  currentPhotoIndex = (currentPhotoIndex - 1 + currentListing.photos.length) % currentListing.photos.length;
+  setModalPhoto();
+}
+    
     function openListing(id){
       const x = listings.find(i => i.id === id);
       if(!x) return;
