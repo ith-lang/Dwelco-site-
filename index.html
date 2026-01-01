@@ -985,6 +985,10 @@ function prevPhoto(){
     function openListing(id){
       const x = listings.find(i => i.id === id);
       if(!x) return;
+      currentListing = x;
+currentPhotoIndex = 0;
+setModalPhoto();
+
 
       const media = document.querySelector(".modal-photo");
 if (media) {
