@@ -866,7 +866,7 @@
           </div>
 
           <div class="modal-actions">
-            <a class="btn" href="#contact" onclick="closeModal()">Request Showing</a>
+            <a class="btn" href="javascript:void(0)" onclick="prefillInterest(window.currentListingTitle); closeModal();"> Request Showing </a>
             <button class="btn btn-ghost" type="button" onclick="closeModal()">Back to Listings</button>
           </div>
         </div>
@@ -985,6 +985,7 @@ function prevPhoto(){
     function openListing(id){
       const x = listings.find(i => i.id === id);
       if(!x) return;
+      window.currentListingTitle = `${x.title} — ${x.addr}`;
       currentListing = x;
 currentPhotoIndex = 0;
 setModalPhoto();
