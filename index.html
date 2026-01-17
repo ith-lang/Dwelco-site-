@@ -718,7 +718,10 @@
             </div>
 
             <form class="mini-form" action="https://formspree.io/f/mdaoqepv" method="POST">
-              <input type="hidden" name="formType" value="Home - Request a Showing">
+
+               <input type="hidden" id="listingChosen" name="listingChosen" value="">
+
+
 
   <div class="field">
     <label for="fullName">Full name</label>
@@ -728,15 +731,19 @@
     <label for="email">Email</label>
     <input id="email" name="email" type="email" placeholder="you@email.com" required />
   </div>
-  <div class="field">
-    <label for="interest">Interested in</label>
-    <select id="interest" name="interest">
-      <option value="any">Any available listing</option>
-      <option value="luxury">Luxury</option>
-      <option value="family">Family</option>
-      <option value="downtown">Downtown</option>
-    </select>
-  </div>
+ <div class="field">
+  <label for="interest">Interested in</label>
+  <select id="interest" name="interest">
+    <!-- This is where we’ll auto-insert the listing -->
+    <option value="" id="selectedListingOption">Selected listing (auto-filled)</option>
+
+    <option value="any">Any available listing</option>
+    <option value="luxury">Luxury</option>
+    <option value="family">Family</option>
+    <option value="downtown">Downtown</option>
+  </select>
+</div>
+
   <button class="btn" type="submit">Send Request</button>
   <p class="note">
     Prefer to talk? Call <strong>(216) 384-8015</strong> or email <strong>info@dwelco.org</strong>.
