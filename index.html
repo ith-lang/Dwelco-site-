@@ -1027,6 +1027,29 @@ if (media) {
       else if(/Family|Residence|Home/i.test(title)) select.value = "family";
       else select.value = "any";
     }
+    function prefillInterest(listingLabel){
+  // 1) Send listing to Formspree via hidden input
+  const hidden = document.getElementById("listingChosen");
+  if (hidden) hidden.value = listingLabel || "";
+
+  // 2) Visually set the dropdown to the selected listing option
+  const sel = document.getElementById("interest");
+  const opt = document.getElementById("selectedListingOption");
+
+  if (sel && opt && listingLabel){
+    opt.textContent = listingLabel;
+    opt.value = listingLabel;      // important: makes it a real selectable value
+    sel.value = listingLabel;      // selects it
+  }
+
+  // 3) Smooth scroll to contact, with sticky-header offset
+  const contact = document.getElementById("contact");
+  if (contact){
+    const y = contact.getBoundingClientRect().top + window.pageYOffset - 90;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }
+}
+
 
     // Events
     filterType.addEventListener("change", applyFilters);
